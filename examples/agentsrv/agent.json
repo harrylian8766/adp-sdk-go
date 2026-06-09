@@ -1,0 +1,82 @@
+{
+  "$schema": "https://agent-discovery.org/schemas/1.0/agent.json",
+  "protocol": "ADP/1.0",
+  "identity": {
+    "id": "agent:localhost:8080",
+    "domain": "localhost:8080",
+    "name": "ADP Example Agent",
+    "owner": "ADP SDK",
+    "created": "2026-06-09T00:00:00Z",
+    "publicKey": {
+      "algorithm": "ed25519",
+      "fingerprint": "ed25519:dGhpcyBpcyBhIHRlc3QgcHVibGljIGtleQ"
+    }
+  },
+  "endpoints": {
+    "discovery": "http://localhost:8080/",
+    "wellKnown": "http://localhost:8080/.well-known/agent.json",
+    "chat": "ws://localhost:8080/agent/chat",
+    "tasks": "http://localhost:8080/agent/tasks",
+    "swarm": "http://localhost:8080/agent/swarm"
+  },
+  "capabilities": [
+    {
+      "id": "chat",
+      "name": "Conversational Chat",
+      "description": "A simple echo chat capability",
+      "input": ["text"],
+      "output": ["text"],
+      "interfaces": ["chat"],
+      "languages": ["en"],
+      "pricing": {
+        "model": "free",
+        "details": null
+      }
+    },
+    {
+      "id": "status",
+      "name": "Agent Status",
+      "description": "Check agent health and availability",
+      "input": ["text"],
+      "output": ["text", "json"],
+      "interfaces": ["api"],
+      "languages": ["en"],
+      "pricing": {
+        "model": "free",
+        "details": null
+      }
+    }
+  ],
+  "interfaces": {
+    "html": "http://localhost:8080/",
+    "api": "http://localhost:8080/agent/",
+    "chat": "ws://localhost:8080/agent/chat"
+  },
+  "relationships": [],
+  "security": {
+    "tlsRequired": false,
+    "minProtocolVersion": "ADP/1.0",
+    "authMethods": ["pubkey"],
+    "rateLimit": {
+      "requestsPerMinute": 60,
+      "burstSize": 10
+    }
+  },
+  "policies": {
+    "privacy": "http://localhost:8080/policies/privacy",
+    "terms": "http://localhost:8080/policies/terms",
+    "dataRetention": "7 days",
+    "thirdPartySharing": false
+  },
+  "availability": {
+    "status": "online",
+    "uptime": "99.9%",
+    "maintenanceWindow": null
+  },
+  "meta": {
+    "updated": "2026-06-09T00:00:00Z",
+    "version": "1.0.0",
+    "generator": "adp-sdk-go/1.0.0",
+    "documentation": null
+  }
+}
